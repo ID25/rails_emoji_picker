@@ -54,7 +54,7 @@ module RailsEmojiPicker
                      css_file('scss')
                    elsif File.file?(css_file('sass'))
                      css_file('sass')
-                    end
+                   end
         css_file
       end
 
