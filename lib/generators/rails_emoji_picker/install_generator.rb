@@ -25,21 +25,25 @@ module RailsEmojiPicker
 
       def info
         puts "    =====================================================
-              😼  😼  😼  Rails Emoji Picker #{RailsEmojiPicker::VERSION}  😼  😼  😼
-              Repository: 'https://github.com/ID25/rails_emoji_picker'
-              Author: Eugene Domosedov (ID25)
+              #{yellow '😼  😼  😼  Rails Emoji Picker'} #{yellow RailsEmojiPicker::VERSION}  #{yellow '😼  😼  😼'}
+              #{blue 'Repository'}: 'https://github.com/ID25/rails_emoji_picker'
+              #{blue 'Author'}: Eugene Domosedov (ID25)
 
-          Add this data attribute to your input/text field
+          1. Add this data-attribute to your input/text field
 
-            data: { emojiable: true }
+            #{green 'data: { emojiable: true }' }
 
-          To show text with emoji, use helper content_with_emoji
+          2. Wrap your input with #{yellow '.emoji-picker-container'} css-class
+
+            #{green 'p.emoji-picker-container' }
+
+          3. To show text with emoji, use helper content_with_emoji
 
         Exaple:
+          #{green 'p.emoji-picker-container'}
+            #{green '= f.text_field :title, class: "form-control", data: { emojiable: true }'}
 
-          = f.text_field :title, class: 'form-control', data: { emojiable: true }
-
-          = content_with_emoji(@post.title)
+          #{green '= content_with_emoji(@post.title)'}
 
     =====================================================
           "
@@ -60,6 +64,22 @@ module RailsEmojiPicker
 
       def css_file(type)
         "app/assets/stylesheets/application.#{type}"
+      end
+
+      def colorize(text, color_code)
+        "\e[#{color_code}m#{text}\e[0m"
+      end
+
+      def green(text)
+        colorize(text, 32)
+      end
+
+      def yellow(text)
+        colorize(text, 33)
+      end
+
+      def blue(text)
+        colorize(text, 36)
       end
     end
   end
