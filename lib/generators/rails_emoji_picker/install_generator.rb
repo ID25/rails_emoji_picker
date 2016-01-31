@@ -1,6 +1,8 @@
 module RailsEmojiPicker
   module Generators
     class InstallGenerator < Rails::Generators::Base
+      source_root File.expand_path('../rails_emoji_picker/lib/generators/rails_emoji_picker/')
+
       def append_to_js
         append_to_file 'app/assets/javascripts/application.js', "//= require rails_emoji_picker\n", before: "\n"
       end
@@ -15,6 +17,10 @@ module RailsEmojiPicker
         regex = /# Add additional assets to the asset load path/
         insert_into_file 'config/initializers/assets.rb/', "\nRails.application.config.assets.paths << Emoji.images_path", after: regex
         insert_into_file 'config/initializers/assets.rb/', "\nRails.application.config.assets.precompile += %w(emoji/*.png)", after: regex
+      end
+
+      def copy_images
+        directory 'emoji_img', 'public/emoji_img'
       end
 
       def info
