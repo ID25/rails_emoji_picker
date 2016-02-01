@@ -9,8 +9,16 @@ module RailsEmojiPicker
 
       def insert_to_css
         application_css = css_type
+        type = application_css.split('.')[1]
 
-        insert_into_file application_css, " *= require rails_emoji_picker\n", before: '*/'
+        case type
+        when 'css'
+          insert_into_file application_css, " *= require rails_emoji_picker\n", before: ' *= require_self'
+        when 'scss'
+          insert_into_file application_css, "\n@import 'rails_emoji_picker';", after: '*/'
+        when 'sass'
+          insert_into_file application_css, "\n@import 'rails_emoji_picker'", after: '*= require_self'
+        end
       end
 
       def insert_to_assets
@@ -31,11 +39,11 @@ module RailsEmojiPicker
 
           1. Add this data-attribute to your input/text field
 
-            #{green 'data: { emojiable: true }' }
+            #{green 'data: { emojiable: true }'}
 
           2. Wrap your input with #{yellow '.emoji-picker-container'} css-class
 
-            #{green 'p.emoji-picker-container' }
+            #{green 'p.emoji-picker-container'}
 
           3. To show text with emoji, use helper content_with_emoji
 
