@@ -1,6 +1,13 @@
 require_relative './emoji_regex'
 
 module RailsEmojiPicker
+  def content_with_emoji(body)
+    post = find_emoji(body)
+    emojify(post, 'emoji-show')
+  end
+
+  private
+
   def emojify(content, css_class = 'emoji')
     h(content).to_str.gsub(/:([\w+-]+):/) do |match|
       if emoji = Emoji.find_by_alias(Regexp.last_match(1))
@@ -10,13 +17,6 @@ module RailsEmojiPicker
       end
     end.html_safe if content.present?
   end
-
-  def content_with_emoji(body)
-    post = find_emoji(body)
-    emojify(post, 'emoji-show')
-  end
-
-  private
 
   def find_emoji(text)
     chars = text.split('')
