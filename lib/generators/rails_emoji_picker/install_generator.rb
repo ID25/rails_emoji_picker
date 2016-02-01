@@ -4,7 +4,7 @@ module RailsEmojiPicker
       source_root File.expand_path('../rails_emoji_picker/lib/generators/rails_emoji_picker/')
 
       def append_to_js
-        append_to_file 'app/assets/javascripts/application.js', "//= require rails_emoji_picker\n", before: "\n"
+        insert_into_file 'app/assets/javascripts/application.js', "//= require rails_emoji_picker\n", before: "//= require_tree ."
       end
 
       def insert_to_css
