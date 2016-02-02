@@ -1,10 +1,10 @@
 module RailsEmojiPicker
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path('../rails_emoji_picker/lib/generators/rails_emoji_picker/')
+      source_root File.dirname(__FILE__)
 
       def append_to_js
-        insert_into_file 'app/assets/javascripts/application.js', "//= require rails_emoji_picker\n", before: "//= require_tree ."
+        insert_into_file 'app/assets/javascripts/application.js', "//= require rails_emoji_picker\n", before: '//= require_tree .'
       end
 
       def insert_to_css
