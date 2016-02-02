@@ -1,7 +1,7 @@
 # Rails Emoji Picker
 
 #### Simple integration of emoji picker with your rails application.
-[![Gem Version](https://badge.fury.io/rb/rails_emoji_picker.svg)](https://badge.fury.io/rb/rails_emoji_picker)
+[![Gem Version](https://badge.fury.io/rb/rails_emoji_picker.svg)](https://badge.fury.io/rb/rails_emoji_picker) [![Build Status](https://travis-ci.org/ID25/rails_emoji_picker.svg?branch=master)](https://travis-ci.org/ID25/rails_emoji_picker)
 
 ## Preview
 <img src="http://i.giphy.com/l2JI5BX9bj3V7PPlC.gif" alt="Rails Emoji Picker">
