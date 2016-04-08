@@ -1,0 +1,373 @@
+@charset "UTF-8";
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+span.emoji,
+span.emoji-inner {
+    text-indent: -9999px;
+    vertical-align: baseline;
+}
+#open-emoji-panel img:hover,
+.emoji-menu-tabs .emoji-menu-tab:hover,
+.emoji-picker-icon:hover,
+.emoji:hover,
+[role=button] {
+    cursor: pointer;
+}
+.img-responsive,
+.img-thumbnail,
+.table,
+label {
+    max-width: 100%;
+}
+.nano {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.nano > .nano-content,
+.nano > .nano-pane {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.nano > .nano-content {
+    overflow: scroll;
+    overflow-x: hidden;
+    left: 0;
+}
+.nano > .nano-content:focus {
+    outline: dotted thin;
+}
+.nano > .nano-content::-webkit-scrollbar {
+    display: none;
+}
+.has-scrollbar > .nano-content::-webkit-scrollbar {
+    display: block;
+}
+.nano > .nano-pane {
+    background: rgba(0,0,0,.25);
+    width: 10px;
+    visibility: hidden\9;
+    opacity: 0.01;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.nano > .nano-pane > .nano-slider {
+    background: #444;
+    background: rgba(0,0,0,.5);
+    position: relative;
+    margin: 0 1px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.nano-pane.active,
+.nano-pane.flashed,
+.nano:hover > .nano-pane {
+    visibility: visible\9;
+    opacity: 0.99;
+}
+span.emoji {
+    -moz-box-orient: vertical;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-size: 1em;
+    background-repeat: no-repeat;
+}
+span.emoji-sizer {
+    line-height: 0.81em;
+    font-size: 1em;
+    margin: -2px 0;
+}
+span.emoji-outer {
+    display: -moz-inline-box;
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+}
+span.emoji-inner {
+    display: -moz-inline-box;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+img.emoji {
+    width: 1em;
+    height: 1em;
+}
+.emoji-picker-container {
+    position: relative;
+    display: inline-block;
+    min-width: 300px;
+}
+.emoji-picker-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+    opacity: 0.7;
+    z-index: 100;
+    transition: none;
+    color: #296762;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.emoji-wysiwyg-editor,
+.form-control {
+    -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+}
+.emoji-picker-icon:hover {
+    opacity: 1;
+}
+.emoji-picker-icon.parent-has-scroll {
+    right: 28px;
+}
+.emoji-wysiwyg-editor:empty:before {
+    content: attr(placeholder);
+    color: #9aa2ab;
+}
+.emoji-wysiwyg-editor:active:before,
+.emoji-wysiwyg-editor:focus:before {
+    content: none;
+}
+.emoji-wysiwyg-editor {
+    padding: 6px 35px 6px 6px;
+    margin-bottom: 0;
+    min-height: 40px;
+    height: 30px;
+    max-height: 284px;
+    overflow: auto;
+    position: relative;
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    resize: both;
+    line-height: 17px;
+    border: 1px solid #d2dbe3;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+    -webkit-user-select: text;
+    word-wrap: break-word;
+}
+.emoji-menu,
+svg:not(:root) {
+    overflow: hidden;
+}
+.emoji-wysiwyg-editor.parent-has-scroll {
+    padding-right: 40px;
+}
+.emoji-wysiwyg-editor.single-line-editor {
+    min-height: 35px;
+    height: inherit;
+}
+.emoji-wysiwyg-editor img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin: -3px 0 0;
+}
+.emoji-menu {
+    position: absolute;
+    z-index: 999;
+    width: 225px;
+    border: 1px solid #dfdfdf;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+.emoji-items-wrap1 {
+    background: #fff;
+    padding: 5px 2px 5px 5px;
+}
+.emoji-items-wrap1 .emoji-menu-tabs {
+    width: 100%;
+    margin-bottom: 8px;
+    margin-top: 3px;
+}
+.emoji-items-wrap1 .emoji-menu-tabs td {
+    text-align: center;
+    color: #fff;
+    line-height: 0;
+}
+.emoji-menu-tabs .emoji-menu-tab {
+    display: inline-block;
+    width: 24px;
+    height: 29px;
+    background: url("/emoji_img/IconsetSmiles.png") no-repeat;
+    background-size: 42px 350px;
+    border: 0;
+}
+.is_1x .emoji-menu-tabs .emoji-menu-tab {
+    background-image: url("/emoji_img/IconsetSmiles_1x.png");
+}
+.emoji-menu-tabs .icon-recent {
+    background-position: -9px -306px;
+}
+.emoji-menu-tabs .icon-recent-selected {
+    background-position: -9px -277px;
+}
+.emoji-menu-tabs .icon-smile {
+    background-position: -9px -34px;
+}
+.emoji-menu-tabs .icon-smile-selected {
+    background-position: -9px -5px;
+}
+.emoji-menu-tabs .icon-flower {
+    background-position: -9px -145px;
+}
+.emoji-menu-tabs .icon-flower-selected {
+    background-position: -9px -118px;
+}
+.emoji-menu-tabs .icon-bell {
+    background-position: -9px -89px;
+}
+.emoji-menu-tabs .icon-bell-selected {
+    background-position: -9px -61px;
+}
+.emoji-menu-tabs .icon-car {
+    background-position: -9px -196px;
+}
+.emoji-menu-tabs .icon-car-selected {
+    background-position: -9px -170px;
+}
+.emoji-menu-tabs .icon-grid {
+    background-position: -9px -248px;
+}
+.emoji-menu-tabs .icon-grid-selected {
+    background-position: -9px -222px;
+}
+.emoji-menu-tabs .icon-bell,
+.emoji-menu-tabs .icon-car,
+.emoji-menu-tabs .icon-flower,
+.emoji-menu-tabs .icon-grid,
+.emoji-menu-tabs .icon-smile {
+    opacity: 0.7;
+}
+.emoji-menu-tabs .icon-bell:hover,
+.emoji-menu-tabs .icon-car:hover,
+.emoji-menu-tabs .icon-flower:hover,
+.emoji-menu-tabs .icon-grid:hover,
+.emoji-menu-tabs .icon-smile:hover {
+    opacity: 1;
+}
+.emoji-menu .emoji-items-wrap {
+    position: relative;
+    height: 174px;
+}
+.emoji-menu .emoji-items {
+    padding-right: 8px;
+    outline: 0!important;
+}
+.emoji-menu img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    border: 0;
+}
+.emoji-menu .emoji-items a {
+    margin: -1px 0 0 -1px;
+    padding: 5px;
+    display: block;
+    float: left;
+    border-radius: 2px;
+    border: 0;
+}
+.emoji-menu .emoji-items a:hover {
+    background-color: #edf2f5;
+}
+.emoji-menu:after {
+    content: ' ';
+    display: block;
+    clear: left;
+}
+.emoji-menu a .label,
+[hidden],
+template {
+    display: none;
+}
+#emoji-wrapper {
+    width: 350px;
+    height: 300px;
+    margin-left: 200px;
+    background-color: #fff;
+    padding: 4px 1px 0;
+    border: 1px solid rgba(0,0,0,.17);
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#open-emoji-panel img,
+.emoji,
+.emoji-basic,
+.emoji-image,
+.emoji-show {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+.label,
+sub,
+sup {
+    vertical-align: baseline;
+}
+.emoji {
+    margin: 5px;
+}
+#emoji-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+#emoji-wrapper::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 10px;
+}
+#emoji-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.5);
+}
+#notice {
+    color: green;
+}
+.field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+}
+#error_explanation {
+    width: 450px;
+    border: 2px solid red;
+    padding: 7px 7px 0;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+#error_explanation h2 {
+    text-align: left;
+    font-weight: 700;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px -7px 0;
+    background-color: #c00;
+    color: #fff;
+}
+#error_explanation ul li {
+    font-size: 12px;
+    list-style: square;
+}
+.form-group {
+    position: relative;
+}

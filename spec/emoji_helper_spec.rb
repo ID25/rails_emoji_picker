@@ -1,19 +1,13 @@
 require 'spec_helper'
 
 describe RailsEmojiPicker do
-  EMOJI_MODULE = Class.new.extend(RailsEmojiPicker)
+  helper = Class.new.extend(RailsEmojiPicker)
 
-  describe '#regex' do
-    it 'has valide regex' do
-      expect(EMOJI_MODULE.send(:regex)).to eq RailsEmojiPicker::EmojiRegex.regex
-    end
-  end
-
-  describe '#emoji_name' do
-    correct_emoji_format = EMOJI_MODULE.send(:emoji_name, 'cat')
+  describe '#content_with_emoji' do
+    correct_emoji_format = helper.content_with_emoji('Hello Erivan, my name is faggot 💙')
 
     it 'return correct emoji name' do
-      expect(correct_emoji_format).to eq ':cat:'
+      expect(correct_emoji_format).to eq "Hello Erivan, my name is faggot <span class='emoji-image'><img alt='text-alt' class=\"emoji\" src=\"http://localhost:3000/assets/emoji/blue_heart.png\"></span>"
     end
   end
 end

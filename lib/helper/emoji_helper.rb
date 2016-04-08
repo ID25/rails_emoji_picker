@@ -1,37 +1,57 @@
 require_relative './emoji_regex'
 
 module RailsEmojiPicker
-  def content_with_emoji(body)
-    post = find_emoji(body)
-    emojify(post, 'emoji-show')
+  def content_with_emoji(text)
+    find_emoji(text)
   end
 
   private
 
-  def emojify(content, css_class = 'emoji')
-    h(content).to_str.gsub(/:([\w+-]+):/) do |match|
-      if emoji = Emoji.find_by_alias(Regexp.last_match(1))
-        %(<img alt="#{Regexp.last_match(1)}" src="#{image_path("emoji/#{emoji.image_filename}")}" class="#{css_class}"/>)
-      else
-        match
-      end
-    end.html_safe if content.present?
-  end
-
   def find_emoji(text)
-    chars = text.split('')
-    chars.each do |c|
-      emoji = c.scan(regex).join('')
-      c.gsub!(regex, emoji_name(Emoji.find_by_unicode(emoji).name)) if emoji.present?
+    string  = replace_unicode_moji_with_images(text) || ''
+    emoji   = string.scan(regex)
+    unicodes = []
+    index = RailsEmojiPicker::EmojiMap.new
+
+    emoji.each do |e|
+      next if e.nil?
+      moji = index.find_by_moji(e)
+
+      if moji
+        name = moji[0]
+        char = moji[1]['char']
+      else
+        moji = Emoji::Index.new.find_by_moji(e)
+
+        name = moji['name']
+        char = moji['moji']
+      end
+
+      unicodes << { name: name, char: char }
     end
-    chars.join('')
+
+    unicodes.each do |hash|
+      host = 'http://localhost:3000'
+
+      string.gsub!(hash[:char], "#{host}/assets/emoji/#{hash[:name]}.png")
+    end
+
+    string.respond_to?(:html_safe) ? string.html_safe : string
   end
 
-  def emoji_name(emoji)
-    ":#{emoji}:"
+  def replace_unicode_moji_with_images(string)
+    return '' unless string
+
+    string.gsub!(regex) do |moji|
+      %(<span class='emoji-image'><img alt='text-alt' class="emoji" src="#{moji}"></span>)
+    end
   end
 
   def regex
     RailsEmojiPicker::EmojiRegex.regex
+  end
+
+  def emoji_map
+    RailsEmojiPicker::EmojiMap
   end
 end
