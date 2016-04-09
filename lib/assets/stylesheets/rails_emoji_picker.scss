@@ -8,7 +8,6 @@ span.emoji-inner {
 #open-emoji-panel img:hover,
 .emoji-menu-tabs .emoji-menu-tab:hover,
 .emoji-picker-icon:hover,
-.emoji:hover,
 [role=button] {
     cursor: pointer;
 }
@@ -99,8 +98,8 @@ span.emoji-inner {
     height: 100%;
 }
 img.emoji {
-    width: 1em;
-    height: 1em;
+    width: 1.3em;
+    height: 1.3em;
 }
 .emoji-picker-container {
     position: relative;

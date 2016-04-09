@@ -18,22 +18,23 @@ module RailsEmojiPicker
       moji = index.find_by_moji(e)
 
       if moji
-        name = moji[0]
-        char = moji[1]['char']
+        name = moji[0] if moji[0]
+        char = moji[1]['char'] if moji[1]['char']
+        hash_emoji = { name: name, char: char }
       else
-        moji = Emoji::Index.new.find_by_moji(e)
-
-        name = moji['name']
-        char = moji['moji']
+        hash_emoji = exceptions_emoji(e)
       end
 
-      unicodes << { name: name, char: char }
+      unicodes << hash_emoji
     end
 
     unicodes.each do |hash|
-      host = 'http://localhost:3000'
+      next if hash.nil?
+      hash.reject! { |i| i.nil? }
 
-      string.gsub!(hash[:char], "#{host}/assets/emoji/#{hash[:name]}.png")
+      if hash[:char]
+        string.gsub!(hash[:char], "#{Emoji.asset_host}#{Emoji.asset_path}#{hash[:name]}.png")
+      end
     end
 
     string.respond_to?(:html_safe) ? string.html_safe : string
@@ -41,9 +42,54 @@ module RailsEmojiPicker
 
   def replace_unicode_moji_with_images(string)
     return '' unless string
+    index = RailsEmojiPicker::EmojiMap.new
 
     string.gsub!(regex) do |moji|
-      %(<span class='emoji-image'><img alt='text-alt' class="emoji" src="#{moji}"></span>)
+      if index.find_by_moji(moji)
+        alt = index.find_by_moji(moji)[0]
+      else
+        tmp = exceptions_emoji(moji)
+        alt = tmp[:name] if tmp.key?(:name)
+      end
+
+      %(<span class='emoji-image'><img alt='#{alt}' class="emoji" src="#{moji}"></span>)
+    end
+  end
+
+  def exceptions_emoji(emoji)
+    case emoji
+    when '☝'
+      { name: 'point_up', char: '☝' }
+    when '☺'
+      { name: 'wink', char: '☺' }
+    when '✌'
+      { name: 'victory_hand', char: '✌' }
+    when '❤'
+      { name: 'heart', char: '❤' }
+    when '☀'
+      { name: 'sunny', char: '☀' }
+    when '☁'
+      { name: 'cloud', char: '☁' }
+    when '❄'
+      { name: 'snowflake', char: '❄' }
+    when '✉'
+      { name: 'email', char: '✉' }
+    when '✈'
+      { name: 'airplane', char: '✈' }
+    when '⚠'
+      { name: 'warning', char: '⚠' }
+    when '♨'
+      { name: 'hotsprings', char: '♨' }
+    when '☎'
+      { name: 'phone', char: '☎' }
+    when '✂'
+      { name: 'scissors', char: '✂' }
+    when '✒'
+      { name: 'black_nib', char: '✒' }
+    when '✏'
+      { name: 'pencil2', char: '✏' }
+    else
+      {}
     end
   end
 
