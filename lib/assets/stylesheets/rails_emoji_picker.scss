@@ -206,12 +206,12 @@ svg:not(:root) {
     display: inline-block;
     width: 24px;
     height: 29px;
-    background: url("/emoji_img/IconsetSmiles.png") no-repeat;
+    background: asset_path("/emoji_img/IconsetSmiles.png") no-repeat;
     background-size: 42px 350px;
     border: 0;
 }
 .is_1x .emoji-menu-tabs .emoji-menu-tab {
-    background-image: url("/emoji_img/IconsetSmiles_1x.png");
+    background-image: asset_path("/emoji_img/IconsetSmiles_1x.png");
 }
 .emoji-menu-tabs .icon-recent {
     background-position: -9px -306px;

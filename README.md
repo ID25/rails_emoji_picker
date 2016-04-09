@@ -71,6 +71,29 @@ If you interpolate string, you need to call `html_safe`, because it's another st
   <%= "Post body: #{content_with_emoji(@post.body)}".html_safe %>
 ```
 
+## Emoji Asset Host
+By default when used with Rails, this gem will inherit Rails configured `Rails.asset_host`.  Otherwise, you will need to manually configure the `Emoji.asset_host` as a string URL or a lambda/proc.
+
+```ruby
+# String URL
+Emoji.asset_host = 'http://mysite.com'
+
+# Custom Host Proc, takes asset path as a param
+Emoji.asset_host = lambda {|path| path.size % 2 == 0 ? 'http://even.com' : 'http://odd.com'}
+```
+
+## Advices
+##### Precompile emoji images in development for fast loading
+##### Use github (or your hosting) as a CDN, to serve images.
+
+Example:
+```ruby
+# => /initializers/emoji_picker.rb
+
+Emoji.asset_host = 'https://raw.githubusercontent.com'
+Emoji.asset_path = '/ID25/rails_emoji_picker/master/lib/generators/rails_emoji_picker/emoji/'
+```
+
 That's all! :smiley_cat:
 ## Contributing
 

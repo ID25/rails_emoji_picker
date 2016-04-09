@@ -32,9 +32,8 @@ module RailsEmojiPicker
       next if hash.nil?
       hash.reject! { |i| i.nil? }
 
-      if hash[:char]
-        string.gsub!(hash[:char], "#{Emoji.asset_host}#{Emoji.asset_path}/#{hash[:name]}.png")
-      end
+
+      insert_image_to_image_tag(string, hash) if hash[:char]
     end
 
     string.respond_to?(:html_safe) ? string.html_safe : string
@@ -42,6 +41,7 @@ module RailsEmojiPicker
 
   def replace_unicode_moji_with_images(string)
     return '' unless string
+
     index = RailsEmojiPicker::EmojiMap.new
 
     string.gsub!(regex) do |moji|
@@ -54,6 +54,21 @@ module RailsEmojiPicker
 
       %(<span class='emoji-image'><img alt='#{alt}' class="emoji" src="#{moji}"></span>)
     end
+  end
+
+  def insert_image_to_image_tag(string, img)
+    return stanadrt_replace(string, img) unless defined? Rails
+
+    if Rails.env.development?
+      stanadrt_replace(string, img)
+    elsif Rails.env.production?
+      url = image_tag("emoji/#{img[:name]}.png")[/img.*?src="(.*?)"/i, 1]
+      string.gsub!(img[:char], url)
+    end
+  end
+
+  def stanadrt_replace(string, img)
+    string.gsub!(img[:char], "#{Emoji.asset_host}#{Emoji.asset_path}/#{img[:name]}.png")
   end
 
   def exceptions_emoji(emoji)
