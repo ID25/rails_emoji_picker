@@ -3,32 +3,9 @@ module RailsEmojiPicker
     class InstallGenerator < Rails::Generators::Base
       source_root File.dirname(__FILE__)
 
-      def append_to_js
-        insert_into_file 'app/assets/javascripts/application.js', "//= require rails_emoji_picker\n", before: '//= require_tree .'
-      end
-
-      def insert_to_css
-        application_css = css_type
-        type = application_css.split('.')[1]
-
-        case type
-        when 'css'
-          insert_into_file application_css, " *= require rails_emoji_picker\n", before: ' *= require_self'
-        when 'scss'
-          insert_into_file application_css, "\n@import 'rails_emoji_picker';", after: '*/'
-        when 'sass'
-          insert_into_file application_css, "\n@import 'rails_emoji_picker'", after: '*= require_self'
-        end
-      end
-
-      def insert_to_assets
-        regex = /# Add additional assets to the asset load path/
-        insert_into_file 'config/initializers/assets.rb/', "\nRails.application.config.assets.paths << Emoji.images_path", after: regex
-        insert_into_file 'config/initializers/assets.rb/', "\nRails.application.config.assets.precompile += %w(emoji/*.png)", after: regex
-      end
-
       def copy_images
-        directory 'emoji_img', 'public/emoji_img'
+        directory 'emoji_img', 'assets/images/emoji_picker'
+        directory 'emoji',     'assets/images/emoji'
       end
 
       def info
@@ -58,21 +35,6 @@ module RailsEmojiPicker
       end
 
       private
-
-      def css_type
-        css_file = if File.file?(css_file('css'))
-                     css_file('css')
-                   elsif File.file?(css_file('scss'))
-                     css_file('scss')
-                   elsif File.file?(css_file('sass'))
-                     css_file('sass')
-                   end
-        css_file
-      end
-
-      def css_file(type)
-        "app/assets/stylesheets/application.#{type}"
-      end
 
       def colorize(text, color_code)
         "\e[#{color_code}m#{text}\e[0m"
