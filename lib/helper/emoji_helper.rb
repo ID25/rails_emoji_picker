@@ -33,7 +33,7 @@ module RailsEmojiPicker
       hash.reject! { |i| i.nil? }
 
       if hash[:char]
-        string.gsub!(hash[:char], "#{Emoji.asset_host}#{Emoji.asset_path}#{hash[:name]}.png")
+        string.gsub!(hash[:char], "#{Emoji.asset_host}#{Emoji.asset_path}/#{hash[:name]}.png")
       end
     end
 

@@ -4,8 +4,8 @@ module RailsEmojiPicker
       source_root File.dirname(__FILE__)
 
       def copy_images
-        directory 'emoji_img', 'assets/images/emoji_picker'
-        directory 'emoji',     'assets/images/emoji'
+        directory 'emoji_img', 'app/assets/images/emoji_picker'
+        directory 'emoji',     'app/assets/images/emoji'
       end
 
       def info

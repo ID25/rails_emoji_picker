@@ -21,25 +21,18 @@ Run command
 rails g rails_emoji_picker:install
 ```
 
-It copies emoji images to your `/public/` directory, adds lines with required js/css files to your application assets and adds precompile images option in `config/initializers/assets.rb`
+It copies emoji images to your `/assets/images` directory
 
-Check your `application.js` and `application.(css, scss,sass)` file.
-
-For JS it requires js asset before `//= require_tree .`
-
-For CSS it requires css asset before `*= require_self`
-
-For SCSS and SASS adds import `@import 'rails_emoji_picker'`
-
-##### It should look like this:
+##### Add emoji picker js file
 
 `application.js`
 ```js
 //= require jquery
-//= require turbolinks
 //= require rails_emoji_picker
 //= require_tree .
 ```
+
+##### And styles
 
 `application.css`
 
@@ -72,7 +65,7 @@ To see emoji in views, wrap your text with helper `content_with_emoji`.
   <%= content_with_emoji(@post.title) %>
 ```
 
-If you interpolate string, you need to call `html_safe`, because it is another string.
+If you interpolate string, you need to call `html_safe`, because it's another string.
 
 ```erb
   <%= "Post body: #{content_with_emoji(@post.body)}".html_safe %>
