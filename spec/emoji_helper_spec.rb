@@ -4,10 +4,10 @@ describe RailsEmojiPicker do
   helper = Class.new.extend(RailsEmojiPicker)
 
   describe '#content_with_emoji' do
-    correct_emoji_format = helper.content_with_emoji('Test Kitty emoji 🐱')
+    correct_emoji_format = helper.content_with_emoji("⚽️ Soccer emoji")
 
     it 'return correct image src with emoji' do
-      expect(correct_emoji_format).to eq "Test Kitty emoji <span class='emoji-image'><img alt='cat' class=\"emoji\" src=\"#{Emoji.asset_host}#{Emoji.asset_path}/cat.png\"></span>"
+      expect(correct_emoji_format).to eq "<span class='emoji-image'><img alt='soccer' class=\"emoji\" src=\"#{Emoji.asset_host}#{Emoji.asset_path}/soccer.png\"></span> Soccer emoji"
     end
   end
 

@@ -8,21 +8,27 @@ module RailsEmojiPicker
   private
 
   def find_emoji(text)
-    string  = replace_unicode_moji_with_images(text) || ''
+    string  = replace_unicode_moji_with_images(text) || text
     emoji   = string.scan(regex)
     unicodes = []
     index = RailsEmojiPicker::EmojiMap.new
 
     emoji.each do |e|
-      next if e.nil?
-      moji = index.find_by_moji(e)
+      next if e.empty?
+      tmp_emoji = e.join('')
+      moji = index.find_by_moji(tmp_emoji)
 
       if moji
-        name = moji[0] if moji[0]
-        char = moji[1]['char'] if moji[1]['char']
-        hash_emoji = { name: name, char: char }
+        flags = exceptions_emoji(tmp_emoji)
+        if flags.empty?
+          name = moji[0] if moji[0]
+          char = moji[1]['char'] if moji[1]['char']
+          hash_emoji = { name: name, char: char }
+        else
+          hash_emoji = flags
+        end
       else
-        hash_emoji = exceptions_emoji(e)
+        hash_emoji = exceptions_emoji(tmp_emoji)
       end
 
       unicodes << hash_emoji
@@ -32,7 +38,6 @@ module RailsEmojiPicker
       next if hash.nil?
       hash.reject! { |i| i.nil? }
 
-
       insert_image_to_image_tag(string, hash) if hash[:char]
     end
 
@@ -40,12 +45,10 @@ module RailsEmojiPicker
   end
 
   def replace_unicode_moji_with_images(string)
-    return '' unless string
-
     index = RailsEmojiPicker::EmojiMap.new
 
     string.gsub!(regex) do |moji|
-      if index.find_by_moji(moji)
+      if moji.size < 2 && index.find_by_moji(moji)
         alt = index.find_by_moji(moji)[0]
       else
         tmp = exceptions_emoji(moji)
@@ -71,48 +74,15 @@ module RailsEmojiPicker
     string.gsub!(img[:char], "#{Emoji.asset_host}#{Emoji.asset_path}/#{img[:name]}.png")
   end
 
-  def exceptions_emoji(emoji)
-    case emoji
-    when '☝'
-      { name: 'point_up', char: '☝' }
-    when '☺'
-      { name: 'wink', char: '☺' }
-    when '✌'
-      { name: 'victory_hand', char: '✌' }
-    when '❤'
-      { name: 'heart', char: '❤' }
-    when '☀'
-      { name: 'sunny', char: '☀' }
-    when '☁'
-      { name: 'cloud', char: '☁' }
-    when '❄'
-      { name: 'snowflake', char: '❄' }
-    when '✉'
-      { name: 'email', char: '✉' }
-    when '✈'
-      { name: 'airplane', char: '✈' }
-    when '⚠'
-      { name: 'warning', char: '⚠' }
-    when '♨'
-      { name: 'hotsprings', char: '♨' }
-    when '☎'
-      { name: 'phone', char: '☎' }
-    when '✂'
-      { name: 'scissors', char: '✂' }
-    when '✒'
-      { name: 'black_nib', char: '✒' }
-    when '✏'
-      { name: 'pencil2', char: '✏' }
-    else
-      {}
-    end
-  end
-
   def regex
     RailsEmojiPicker::EmojiRegex.regex
   end
 
   def emoji_map
     RailsEmojiPicker::EmojiMap
+  end
+
+  def exceptions_emoji(emoji)
+    RailsEmojiPicker::EmojiExceptions.call(emoji)
   end
 end
