@@ -1281,11 +1281,11 @@ function getGuid() {
                     "msTransform" !== F && (k[F] += " translateZ(0)")
                   } else 
                     a.top
-                      ? k.top = c.top + "px"
-                      : k.bottom = c.bottom + "px",
+                      ? k.top = (c.top+225) + "px"
+                      : k.bottom = (c.bottom+225) + "px",
                     a.left
-                      ? k.left = c.left + "px"
-                      : k.right = c.right + "px"
+                      ? k.left = (c.left-228) + "px"
+                      : k.right = (c.right-228) + "px"
                   },
                 m = !1;
                 console.log(b.target,b.element.offsetWidth);
