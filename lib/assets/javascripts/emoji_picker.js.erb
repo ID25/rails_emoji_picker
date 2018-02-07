@@ -1288,6 +1288,8 @@ function getGuid() {
                       : k.right = c.right + "px"
                   },
                 m = !1;
+                console.log(b.target);
+                console.log(b.element);
               if (
                 (c.page.top || c.page.bottom) && (c.page.left || c.page.right)
                 ? (k.position = "absolute", l(c.page, a.page))
@@ -1297,8 +1299,6 @@ function getGuid() {
                     ? !function() {
                       k.position = "absolute";
                       var d = b.cache("target-offsetparent", function() {
-                        console.log(b.target);
-                        console.log(b.element);
                         return g(b.target)
                       });
                       g(b.element) !== d && A(function() {
