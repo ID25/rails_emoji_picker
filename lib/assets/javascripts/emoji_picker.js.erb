@@ -2,7 +2,7 @@ function buildMap() {
   var a = [],
     b = [];
   for (var c in Config.emoji_data) {
-    for (var d = 0; d < Config.emoji_data[c][0].length; d++) 
+    for (var d = 0; d < Config.emoji_data[c][0].length; d++)
       a.push(Config.escape_rx(":" + Config.emoji_data[c][3][0]) + ":"),
       b.push(Config.emoji_data[c][0][0]),
       Config.map[Config.emoji_data[c][3][0]] = Config.emoji_data[c][0][0],
@@ -116,8 +116,8 @@ function getGuid() {
       f;
     for (d = [
       "t", "webkitT", "MozT", "msT", "OT"
-    ], a = e = 0, f = d.length; f > e; a = ++e) 
-      if (c = d[a], b = d[a] + "ransform", b in F) 
+    ], a = e = 0, f = d.length; f > e; a = ++e)
+      if (c = d[a], b = d[a] + "ransform", b in F)
         return d[a].substr(0, d[a].length - 1);
   return !1
   }(),
@@ -176,13 +176,13 @@ function getGuid() {
       this.reset()
     }
     return j.prototype.preventScrolling = function(a, b) {
-      if (this.isActive) 
-        if (a.type === f) 
+      if (this.isActive)
+        if (a.type === f)
           (b === g && a.originalEvent.detail > 0 || b === w && a.originalEvent.detail < 0) && a.preventDefault();
         else if (a.type === p) {
-          if (!a.originalEvent || !a.originalEvent.wheelDelta) 
+          if (!a.originalEvent || !a.originalEvent.wheelDelta)
             return;
-          
+
           (b === g && a.originalEvent.wheelDelta < 0 || b === w && a.originalEvent.wheelDelta > 0) && a.preventDefault()
         }
       },
@@ -449,23 +449,23 @@ function getGuid() {
       var c,
         d;
       if ((d = this.nanoscroller) || (c = a.extend({}, z, b), this.nanoscroller = d = new q(this, c)), b && "object" == typeof b) {
-        if (a.extend(d.options, b), null != b.scrollBottom) 
+        if (a.extend(d.options, b), null != b.scrollBottom)
           return d.scrollBottom(b.scrollBottom);
-        if (null != b.scrollTop) 
+        if (null != b.scrollTop)
           return d.scrollTop(b.scrollTop);
-        if (b.scrollTo) 
+        if (b.scrollTo)
           return d.scrollTo(b.scrollTo);
-        if ("bottom" === b.scroll) 
+        if ("bottom" === b.scroll)
           return d.scrollBottom(0);
-        if ("top" === b.scroll) 
+        if ("top" === b.scroll)
           return d.scrollTop(0);
-        if (b.scroll && b.scroll instanceof a) 
+        if (b.scroll && b.scroll instanceof a)
           return d.scrollTo(b.scroll);
-        if (b.stop) 
+        if (b.stop)
           return d.stop();
-        if (b.destroy) 
+        if (b.destroy)
           return d.destroy();
-        if (b.flash) 
+        if (b.flash)
           return d.flash()
       }
       return d.reset()
@@ -482,25 +482,25 @@ function getGuid() {
 }(this, function(a, b, c) {
   "use strict";
   function d(a, b) {
-    if (!(a instanceof b)) 
+    if (!(a instanceof b))
       throw new TypeError("Cannot call a class as a function")
   }
   function e(a) {
     var b = getComputedStyle(a),
       c = b.position;
-    if ("fixed" === c) 
+    if ("fixed" === c)
       return a;
     for (var d = a; d = d.parentNode;) {
       var e = void 0;
       try {
         e = getComputedStyle(d)
       } catch (f) {}
-      if ("undefined" == typeof e || null === e) 
+      if ("undefined" == typeof e || null === e)
         return d;
       var g = e.overflow,
         h = e.overflowX,
         i = e.overflowY;
-      if (/(auto|scroll)/.test(g + i + h) && ("absolute" !== c || ["relative", "absolute", "fixed"].indexOf(e.position) >= 0)) 
+      if (/(auto|scroll)/.test(g + i + h) && ("absolute" !== c || ["relative", "absolute", "fixed"].indexOf(e.position) >= 0))
         return d
     }
     return document.body
@@ -513,7 +513,7 @@ function getGuid() {
     var c = b.documentElement,
       d = {},
       e = a.getBoundingClientRect();
-    for (var f in e) 
+    for (var f in e)
       d[f] = e[f];
     var g = y(b);
     return d.top -= g.top,
@@ -561,14 +561,14 @@ function getGuid() {
       b = [];
     return Array.prototype.push.apply(b, arguments),
     b.slice(1).forEach(function(b) {
-      if (b) 
-        for (var c in b) 
+      if (b)
+        for (var c in b)
           ({}).hasOwnProperty.call(b, c) && (a[c] = b[c])
     }),
     a
   }
   function j(a, b) {
-    if ("undefined" != typeof a.classList) 
+    if ("undefined" != typeof a.classList)
       b.split(" ").forEach(function(b) {
         b.trim() && a.classList.remove(b)
       });
@@ -579,7 +579,7 @@ function getGuid() {
     }
   }
   function k(a, b) {
-    if ("undefined" != typeof a.classList) 
+    if ("undefined" != typeof a.classList)
       b.split(" ").forEach(function(b) {
         b.trim() && a.classList.add(b)
       });
@@ -590,7 +590,7 @@ function getGuid() {
     }
   }
   function l(a, b) {
-    if ("undefined" != typeof a.classList) 
+    if ("undefined" != typeof a.classList)
       return a.classList.contains(b);
     var c = m(a);
     return new RegExp("(^| )" + b + "( |$)", "gi").test(c)
@@ -612,7 +612,7 @@ function getGuid() {
     })
   }
   function d(a, b) {
-    if (!(a instanceof b)) 
+    if (!(a instanceof b))
       throw new TypeError("Cannot call a class as a function")
   }
   function p(a, b) {
@@ -630,7 +630,7 @@ function getGuid() {
     for (var a = {
       top: 0,
       left: 0
-    }, b = arguments.length, c = Array(b), d = 0; b > d; d++) 
+    }, b = arguments.length, c = Array(b), d = 0; b > d; d++)
       c[d] = arguments[d];
     return c.forEach(function(b) {
       var c = b.top,
@@ -710,7 +710,7 @@ function getGuid() {
       if ("undefined" == typeof x[c]) {
         x[c] = {};
         var d = b.getBoundingClientRect();
-        for (var e in d) 
+        for (var e in d)
           x[c][e] = d[e];
         A(function() {
           delete x[c]
@@ -723,7 +723,7 @@ function getGuid() {
       z.push(a)
     },
     B = function() {
-      for (var a = void 0; a = z.pop();) 
+      for (var a = void 0; a = z.pop();)
         a()
     },
     C = function() {
@@ -749,11 +749,11 @@ function getGuid() {
         }, {
           key: "off",
           value: function(a, b) {
-            if ("undefined" == typeof this.bindings || "undefined" == typeof this.bindings[a]) 
-              if ("undefined" == typeof b) 
+            if ("undefined" == typeof this.bindings || "undefined" == typeof this.bindings[a])
+              if ("undefined" == typeof b)
                 delete this.bindings[a];
-              else 
-                for (var c = 0; c < this.bindings[a].length;) 
+              else
+                for (var c = 0; c < this.bindings[a].length;)
                   this.bindings[a][c].handler === b
                     ? this.bindings[a].splice(c, 1)
                     : ++c
@@ -761,7 +761,7 @@ function getGuid() {
         }, {
           key: "trigger",
           value: function(a) {
-            if ("undefined" != typeof this.bindings && this.bindings[a]) 
+            if ("undefined" != typeof this.bindings && this.bindings[a])
               for (var b = 0; b < this.bindings[a].length;) {
                 var c = this.bindings[a][b],
                   d = c.handler,
@@ -772,7 +772,7 @@ function getGuid() {
                 for (var h = arguments.length, i = Array(
                   h > 1
                   ? h - 1
-                  : 0), j = 1; h > j; j++) 
+                  : 0), j = 1; h > j; j++)
                   i[j - 1] = arguments[j];
                 d.apply(g, i),
                 f
@@ -815,16 +815,16 @@ function getGuid() {
           try {
             !d && h["return"] && h["return"]()
           } finally {
-            if (e) 
+            if (e)
               throw f
           }
         }
         return c
       }
       return function(b, c) {
-        if (Array.isArray(b)) 
+        if (Array.isArray(b))
           return b;
-        if (Symbol.iterator in Object(b)) 
+        if (Symbol.iterator in Object(b))
           return a(b, c);
         throw new TypeError("Invalid attempt to destructure non-iterable instance")
       }
@@ -845,7 +845,7 @@ function getGuid() {
         b
       }
     }();
-  if ("undefined" == typeof v) 
+  if ("undefined" == typeof v)
     throw new Error("You must include the utils.js file before tether.js");
   var E = v.Utils,
     e = E.getScrollParent,
@@ -863,7 +863,7 @@ function getGuid() {
         "transform", "webkitTransform", "OTransform", "MozTransform", "msTransform"
       ], c = 0; c < b.length; ++c) {
         var d = b[c];
-        if (void 0 !== a.style[d]) 
+        if (void 0 !== a.style[d])
           return d
       }
     }(),
@@ -981,16 +981,16 @@ function getGuid() {
               ? (this.target = document.body, this.targetModifier = "visible")
               : "scroll-handle" === this.target && (this.target = document.body, this.targetModifier = "scroll-handle"),
             ["element", "target"].forEach(function(a) {
-              if ("undefined" == typeof b[a]) 
+              if ("undefined" == typeof b[a])
                 throw new Error("Tether Error: Both element and target must be defined");
-              
+
               "undefined" != typeof b[a].jquery
                 ? b[a] = b[a][0]
                 : "string" == typeof b[a] && (b[a] = document.querySelector(b[a]))
             }),
             k(this.element, this.getClass("element")),
             this.options.addTargetClasses !== !1 && k(this.target, this.getClass("target")),
-            !this.options.attachment) 
+            !this.options.attachment)
               throw new Error("Tether Error: You must provide an attachment");
             this.targetAttachment = O(this.options.targetAttachment),
             this.attachment = O(this.options.attachment),
@@ -1005,10 +1005,10 @@ function getGuid() {
         }, {
           key: "getTargetBounds",
           value: function() {
-            if ("undefined" == typeof this.targetModifier) 
+            if ("undefined" == typeof this.targetModifier)
               return f(this.target);
             if ("visible" === this.targetModifier) {
-              if (this.target === document.body) 
+              if (this.target === document.body)
                 return {top: pageYOffset, left: pageXOffset, height: innerHeight, width: innerWidth};
               var a = f(this.target),
                 b = {
@@ -1152,7 +1152,7 @@ function getGuid() {
                 var j = this.lastSize;
                 e = j.width,
                 i = j.height
-              } else 
+              } else
                 this.lastSize = {
                   width: e,
                   height: i
@@ -1188,9 +1188,9 @@ function getGuid() {
                     scrollbarSize: z,
                     attachment: this.attachment
                   });
-                if (x === !1) 
+                if (x === !1)
                   return !1;
-                
+
                 "undefined" != typeof x && "object" == typeof x && (t = x.top, q = x.left)
               }
               var y = {
@@ -1277,12 +1277,12 @@ function getGuid() {
                     a.left
                       ? (k.left = 0, g = c.left)
                       : (k.right = 0, g = -c.right),
-                    k[F] = "translateX(" + Math.round(g-228) + "px) translateY(" + Math.round(f-225) + "px)",
+                    k[F] = "translateX(" + Math.round(g-228) + "px) translateY(" + Math.round(f-175) + "px)",
                     "msTransform" !== F && (k[F] += " translateZ(0)")
-                  } else 
+                  } else
                     a.top
-                      ? k.top = (c.top+225) + "px"
-                      : k.bottom = (c.bottom+225) + "px",
+                      ? k.top = (c.top+175) + "px"
+                      : k.bottom = (c.bottom+175) + "px",
                     a.left
                       ? k.left = (c.left-228) + "px"
                       : k.right = (c.right-228) + "px"
@@ -1358,16 +1358,16 @@ function getGuid() {
           try {
             !d && h["return"] && h["return"]()
           } finally {
-            if (e) 
+            if (e)
               throw f
           }
         }
         return c
       }
       return function(b, c) {
-        if (Array.isArray(b)) 
+        if (Array.isArray(b))
           return b;
-        if (Symbol.iterator in Object(b)) 
+        if (Symbol.iterator in Object(b))
           return a(b, c);
         throw new TypeError("Invalid attempt to destructure non-iterable instance")
       }
@@ -1384,7 +1384,7 @@ function getGuid() {
         c = a.top,
         d = a.left,
         e = a.targetAttachment;
-      if (!this.options.constraints) 
+      if (!this.options.constraints)
         return !0;
       var g = this.cache("element-bounds", function() {
           return f(b.element)
@@ -1428,7 +1428,7 @@ function getGuid() {
             p = D(o, 2);
           l = p[0],
           k = p[1]
-        } else 
+        } else
           k = l = g;
         var u = t(b, f);
         ("target" === l || "both" === l) && (c < u[1] && "top" === r.top && (c += m, r.top = "bottom"), c + h > u[3] && "bottom" === r.top && (c -= m, r.top = "top")),
@@ -1575,16 +1575,16 @@ function getGuid() {
         try {
           !d && h["return"] && h["return"]()
         } finally {
-          if (e) 
+          if (e)
             throw f
         }
       }
       return c
     }
     return function(b, c) {
-      if (Array.isArray(b)) 
+      if (Array.isArray(b))
         return b;
-      if (Symbol.iterator in Object(b)) 
+      if (Symbol.iterator in Object(b))
         return a(b, c);
       throw new TypeError("Invalid attempt to destructure non-iterable instance")
     }
@@ -1609,7 +1609,7 @@ function getGuid() {
           f = g[1],
           e = parseFloat(e, 10),
           f = parseFloat(f, 10)
-        } else 
+        } else
           e = d.top,
           f = d.left;
         return b += e,
@@ -12206,8 +12206,8 @@ Config.init_colons = function() {
     Config.inits.colons = 1,
     Config.rx_colons = new RegExp(":[^\\s:]+:", "g"),
     Config.map.colons = {};
-    for (var a in Config.data) 
-      for (var b = 0; b < Config.data[a][3].length; b++) 
+    for (var a in Config.data)
+      for (var b = 0; b < Config.data[a][3].length; b++)
         Config.map.colons[emoji.data[a][3][b]] = a
   }
 },
@@ -12239,8 +12239,8 @@ function(a) {
       h = 1 == e.length,
       i = !0,
       m = d();
-    for (b = 0; b < e.length; b++) 
-      if (c = e[b] = m + e[b], "xt_" != c.substr(0, 3) && void 0 !== j[c]) 
+    for (b = 0; b < e.length; b++)
+      if (c = e[b] = m + e[b], "xt_" != c.substr(0, 3) && void 0 !== j[c])
         g.push(j[c]);
       else if (l) {
         try {
@@ -12257,7 +12257,7 @@ function(a) {
         }
         g.push(j[c] = a)
       }
-    else 
+    else
       k
         ? i = !1
         : g.push(j[c] = !1);
@@ -12268,7 +12268,7 @@ function(a) {
         : g)
       : void chrome.storage.local.get(e, function(a) {
         var d;
-        for (g = [], b = 0; b < e.length; b++) 
+        for (g = [], b = 0; b < e.length; b++)
           c = e[b],
           d = a[c],
           d = void 0 === d || null === d
@@ -12286,15 +12286,15 @@ function(a) {
       e,
       f = {},
       g = d();
-    for (c in a) 
-      if (a.hasOwnProperty(c)) 
-        if (e = a[c], c = g + c, j[c] = e, e = JSON.stringify(e), l) 
+    for (c in a)
+      if (a.hasOwnProperty(c))
+        if (e = a[c], c = g + c, j[c] = e, e = JSON.stringify(e), l)
           try {
             localStorage.setItem(c, e)
           } catch (h) {
             l = !1
           }
-        else 
+        else
       f[c] = e;
     return l || !k
       ? void(b && b())
@@ -12306,8 +12306,8 @@ function(a) {
       c,
       e = Array.prototype.slice.call(arguments),
       f = d();
-    for ("function" == typeof e[e.length - 1] && (c = e.pop()), a = 0; a < e.length; a++) 
-      if (b = e[a] = f + e[a], delete j[b], l) 
+    for ("function" == typeof e[e.length - 1] && (c = e.pop()), a = 0; a < e.length; a++)
+      if (b = e[a] = f + e[a], delete j[b], l)
         try {
           localStorage.removeItem(b)
         } catch (g) {
@@ -12364,7 +12364,7 @@ function(a, b, c) {
       ? function(a) {
         var c = b.getSelection();
         c.removeAllRanges();
-        for (var d = 0, e = a.length; e > d; ++d) 
+        for (var d = 0, e = a.length; e > d; ++d)
           c.addRange(a[d])
       }
       : c.selection && c.selection.createRange
@@ -12378,8 +12378,8 @@ function(a, b, c) {
       ? function() {
         var a = b.getSelection(),
           c = [];
-        if (a.rangeCount) 
-          for (var d = 0, e = a.rangeCount; e > d; ++d) 
+        if (a.rangeCount)
+          for (var d = 0, e = a.rangeCount; e > d; ++d)
             c.push(a.getRangeAt(d));
       return c
       }
@@ -12428,8 +12428,8 @@ function(a, b, c) {
       : "undefined" != typeof c.selection && "undefined" != typeof c.selection.createRange && (b.focus(), f = c.selection.createRange(), f.text = a, f.select())
   },
   j.extend = function(a, b) {
-    if ("undefined" != typeof a && a || (a = {}), "object" == typeof b) 
-      for (var c in b) 
+    if ("undefined" != typeof a && a || (a = {}), "object" == typeof b)
+      for (var c in b)
         b.hasOwnProperty(c) && (a[c] = b[c]);
   return a
   },
@@ -12573,7 +12573,7 @@ function(a, b, c) {
   },
   m.prototype.insert = function(b) {
     var c = "";
-    if ("unicode" == this.options.inputMethod) 
+    if ("unicode" == this.options.inputMethod)
       c = this.emojiPopup.colonToUnicode(b);
     else {
       var d = a(k.createIcon(a.emojiarea.icons[b]));
@@ -12595,7 +12595,7 @@ function(a, b, c) {
       a.push(b.join("")),
       b = []
     }, h = function(a) {
-      if (a.nodeType === e) 
+      if (a.nodeType === e)
         b.push(a.nodeValue);
       else if (a.nodeType === d) {
         var c = a.tagName.toLowerCase(),
@@ -12605,11 +12605,11 @@ function(a, b, c) {
           return void(j && b.push(j))
         }
         "br" === c && g();
-        for (var k = a.childNodes, l = 0; l < k.length; l++) 
+        for (var k = a.childNodes, l = 0; l < k.length; l++)
           h(k[l]);
         i && b.length && g()
       }
-    }, i = this.$editor[0].childNodes, j = 0; j < i.length; j++) 
+    }, i = this.$editor[0].childNodes, j = 0; j < i.length; j++)
       h(i[j]);
     b.length && g();
     var k = a.join("\n");
@@ -12654,8 +12654,8 @@ function(a, b, c) {
       c = c.originalEvent || c;
       var d = c.originalTarget || c.target || b;
       if (!a(d).hasClass(e.emojiarea.$dontHideOnClick)) {
-        for (; d && d != b;) 
-          if (d = d.parentNode, d == e.$menu[0] || e.emojiarea && d == e.emojiarea.$button[0]) 
+        for (; d && d != b;)
+          if (d = d.parentNode, d == e.$menu[0] || e.emojiarea && d == e.emojiarea.$button[0])
             return;
       e.hide()
       }
@@ -12668,7 +12668,7 @@ function(a, b, c) {
       !1
     }),
     this.$menu.on("click", "a", function(c) {
-      if (e.emojiarea.updateBodyPadding(e.emojiarea.$editor), a(this).hasClass("emoji-menu-tab")) 
+      if (e.emojiarea.updateBodyPadding(e.emojiarea.$editor), a(this).hasClass("emoji-menu-tab"))
         return e.getTabIndex(this) !== e.currentCategory && e.selectCategory(e.getTabIndex(this)),
         !1;
       var d = a(".label", a(this)).text();
@@ -12710,15 +12710,15 @@ function(a, b, c) {
       }, 100)
     };
     if (b > 0) {
-      for (var h in d) 
+      for (var h in d)
         d.hasOwnProperty(h) && d[h][0] === b - 1 && c.push('<a href="javascript:void(0)" title="' + j.htmlEntities(h) + '">' + k.createIcon(d[h], !0) + '<span class="label">' + j.htmlEntities(h) + "</span></a>");
       g()
-    } else 
+    } else
       ConfigStorage.get("emojis_recent", function(a) {
         a = a || i || [];
         var b,
           e;
-        for (e = 0; e < a.length; e++) 
+        for (e = 0; e < a.length; e++)
           b = a[e],
           d[b] && c.push('<a href="javascript:void(0)" title="' + j.htmlEntities(b) + '">' + k.createIcon(d[b], !0) + '<span class="label">' + j.htmlEntities(b) + "</span></a>");
         g()
@@ -12786,7 +12786,7 @@ function() {
         j,
         k;
       for (f = {}, i = {}, e = void 0, g = void 0, d = void 0, h = void 0, c = void 0, j = void 0, b = void 0, k = void 0, g = 0; g < Config.EmojiCategories.length;) {
-        for (k = Config.EmojiCategorySpritesheetDimens[g][1], e = 0; e < Config.EmojiCategories[g].length;) 
+        for (k = Config.EmojiCategorySpritesheetDimens[g][1], e = 0; e < Config.EmojiCategories[g].length;)
           c = Config.Emoji[Config.EmojiCategories[g][e]],
           h = c[1][0],
           j = Math.floor(e / k),
