@@ -48,14 +48,15 @@ module RailsEmojiPicker
     index = RailsEmojiPicker::EmojiMap.new
 
     string.gsub!(regex) do |moji|
-      if moji.size < 2 && index.find_by_moji(moji)
+      if index.find_by_moji(moji)
         alt = index.find_by_moji(moji)[0]
       else
         tmp = exceptions_emoji(moji)
         alt = tmp[:name] if tmp.key?(:name)
       end
 
-      %(<span class='emoji-image'><img alt='#{alt}' class="emoji" src="#{moji}"></span>)
+      return %() if alt.nil?
+      %(<span class='emoji-image'><img alt=':#{alt}:' class="emoji" src="#{moji}"></span>)
     end
   end
 
